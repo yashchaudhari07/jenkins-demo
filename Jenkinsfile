@@ -14,5 +14,10 @@ pipeline {
                 bat 'docker run -d -p 8081:80 --name html-container my-html-app'
             }
         }
+        stage('Push Image') {
+            steps {
+               bat 'docker push username/my-html-app'
+            }
+        }
     }
 }
