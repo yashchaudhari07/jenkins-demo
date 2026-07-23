@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Push Image') {
             steps {
-               bat 'docker push username/my-html-app'
+               bat 'docker push yashchaudhari07/my-html-app'
             }
         }
     }
