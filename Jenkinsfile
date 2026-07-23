@@ -3,39 +3,16 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Checking out source code...'
-                checkout scm
+                bat 'docker build -t my-html-app .'
             }
         }
 
-        stage('Build') {
+        stage('Run Container') {
             steps {
-                echo 'Building Project...'
+                bat 'docker run -d -p 8081:80 --name html-container my-html-app'
             }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Running Tests...'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying Application...'
-            }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline Executed Successfully'
-        }
-
-        failure {
-            echo 'Pipeline Failed'
         }
     }
 }
